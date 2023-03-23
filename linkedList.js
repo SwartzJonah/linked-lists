@@ -49,11 +49,27 @@ function LinkedList() {
         console.log(stringList);
     }
 
+    function size(){
+        let listSize = 0;
+        if (this.head === null) {
+            listSize = 0;
+        } else {
+            let temp = this.head;
+            while (temp.next != null) {
+                listSize++;
+                temp = temp.next;
+            }
+            listSize++
+        }
+        console.log(listSize);
+    }
 
-    return { head, append, prepend, toString }
+
+    return { head, append, prepend, toString, size }
 }
 
 const test = LinkedList();
 test.append(2)
 test.prepend(6)
+test.size();
 test.toString();
