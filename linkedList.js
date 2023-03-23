@@ -64,8 +64,28 @@ function LinkedList() {
         console.log(listSize);
     }
 
+    function returnHead(){
+        if (this.head === null) {
+            return null;
+        } else {
+            return this.head;
+        }
+    }
 
-    return { head, append, prepend, toString, size }
+    function returnTail(){
+        if (this.head === null) {
+            return null
+        } else {
+            let temp = this.head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            return temp;
+        }
+    }
+
+
+    return {head, append, prepend, toString, size, returnHead, returnTail }
 }
 
 const test = LinkedList();
@@ -73,3 +93,7 @@ test.append(2)
 test.prepend(6)
 test.size();
 test.toString();
+const header = test.returnHead()
+const tailer = test.returnTail()
+
+
