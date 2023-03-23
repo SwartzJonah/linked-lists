@@ -117,8 +117,45 @@ function LinkedList() {
         }
     }
 
+    //Returns true if list contains value returns false otherwise
+    function contains(value){
+        let test = value;
+        let bool = false;
+        if (this.head === null) {
+            return bool;
+        } else {
+            let temp = this.head;
+            while (temp != null) {
+                if (temp.value === test){
+                    bool = true;
+                }
+                temp = temp.next;
+            }
+            return bool;
+        }
+    }
 
-    return {head, append, prepend, toString, size, returnHead, returnTail, atIndex, pop }
+    //Finds the index of a node that contains value or null if it doesnt exist
+    function find(value){
+        let test = value;
+        let index = 1;
+        if (this.head === null) {
+            return null
+        } else {
+            let temp = this.head;
+            while (temp != null) {
+                if (temp.value === test){
+                    return index;
+                }
+                index++
+                temp = temp.next;
+            }
+            return null;
+        }
+    }
+
+
+    return {head, append, prepend, toString, size, returnHead, returnTail, atIndex, pop, contains, find }
 }
 
 const test = LinkedList();
@@ -133,5 +170,9 @@ const tailer = test.returnTail()
 const atIndexTest = test.atIndex(2);
 test.pop();
 test.toString();
+const containsTest = test.contains(2);
+const findTest = test.find(19);
+console.log(findTest)
+
 
 
