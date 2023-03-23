@@ -49,6 +49,7 @@ function LinkedList() {
         console.log(stringList);
     }
 
+    //returns size of list
     function size(){
         let listSize = 0;
         if (this.head === null) {
@@ -154,14 +155,44 @@ function LinkedList() {
         }
     }
 
+    //inserts new node with value at an index
+    function insertAt(value, index){
+        if(index <= 0){
+            return "Index must be at least 1"
+        }
+        if(this.atIndex(index) === "Index does not exist in this list"){
+            return "Cannot change index that doesn't exist"
+        }
+        let temp = this.atIndex(index);
+        temp.value = value;
+    }
 
-    return {head, append, prepend, toString, size, returnHead, returnTail, atIndex, pop, contains, find }
+    //removes node at index
+    function removeAt(index){
+        if(index <= 0){
+            return "Index must be at least 1"
+        }
+        if(index === 1){
+            this.head = this.head.next;
+            return;
+        }
+        if(this.atIndex(index) === "Index does not exist in this list"){
+            return "Cannot remove index that doesn't exist"
+        }
+        let temp = this.atIndex(index - 1);
+        temp.next = temp.next.next;
+        
+    }
+
+
+    return {head, append, prepend, toString, size, returnHead, returnTail, atIndex, pop, contains, find, insertAt, removeAt }
 }
 
 const test = LinkedList();
 test.append(2)
 test.append(3)
 test.append(4)
+test.append(5)
 test.prepend(1)
 test.size();
 test.toString();
@@ -170,9 +201,13 @@ const tailer = test.returnTail()
 const atIndexTest = test.atIndex(2);
 test.pop();
 test.toString();
+test.append(5)
 const containsTest = test.contains(2);
 const findTest = test.find(19);
-console.log(findTest)
+test.insertAt(7,1);
+test.toString();
+test.removeAt(3);
+test.toString();
 
 
 
