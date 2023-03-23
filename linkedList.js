@@ -84,16 +84,54 @@ function LinkedList() {
         }
     }
 
+    //Returns the node at a given index
+    function atIndex(value){
+        if(value <= 0){
+            return "Index must be at least 1"
+        }
+        if (this.head === null) {
+            return "List doesn't have any values"
+        } else {
+            let temp = this.head;
+            for(let i = 1; i < value; i++){
+                if(temp.next != null) {
+                    temp = temp.next;
+                } else {
+                    return "Index does not exist in this list"
+                }
+            }
+            return temp;
+        }
+    }
 
-    return {head, append, prepend, toString, size, returnHead, returnTail }
+    //Removes last node from list
+    function pop(){
+        if (this.head === null) {
+            return null
+        } else {
+            let temp = this.head;
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            temp.next = null
+        }
+    }
+
+
+    return {head, append, prepend, toString, size, returnHead, returnTail, atIndex, pop }
 }
 
 const test = LinkedList();
 test.append(2)
-test.prepend(6)
+test.append(3)
+test.append(4)
+test.prepend(1)
 test.size();
 test.toString();
 const header = test.returnHead()
 const tailer = test.returnTail()
+const atIndexTest = test.atIndex(2);
+test.pop();
+test.toString();
 
 
